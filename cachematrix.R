@@ -1,7 +1,5 @@
 ## This is the makeCacheMatrix ##
-# Fist create a function that takes a matrix of numeric objets,
-# the name of the matrix that we want to see if the Inverse was calculated
-# and the name of this operation, if it exist and with it do 5 things.
+# Fist create a function that takes a matrix of numeric objets, and with it:.
 # *Establish value of the inverse matrix in the makeCacheMatrix
 #  enviroment equals to NULL
 # *Set the value of x looking in other enviroments using the <<- technique and
@@ -13,7 +11,7 @@
 # *GetInv get the value of the variable Inv if is already exist as a matrix
 # Finally it return a list with this four functions
 
-makeCacheMatrix<-function(x=matrix(),y,solve=NULL){
+makeCacheMatrix<-function(x=matrix()){
 	Inv<-NULL
 	set<-function(y){
 		x<<-y
@@ -28,8 +26,8 @@ makeCacheMatrix<-function(x=matrix(),y,solve=NULL){
 	getInv<-function(){ 
 	Inv
 	}
-list(set = set(y), get = get,
-             setInv = setInv(solve),
+list(set = set, get = get,
+             setInv = setInv,
              getInv = getInv)
 }
 
@@ -48,6 +46,6 @@ cacheSolve<-function(x,...){
 }
 	Datos<-x$get()
 	Inv<-solve(Datos,...)
-	x$getInv()
+	x$setInv(Inv)
 	Inv	
 }
